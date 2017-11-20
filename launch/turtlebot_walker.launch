@@ -1,0 +1,21 @@
+<launch>
+	<arg name="record_bag"/>
+	
+	<node
+		pkg="turtlebot_walker" 
+		type="turtlebot_control" 
+		name="turtlebot_control"
+		required="true"
+	/>
+	<node
+		pkg="rosbag"
+		type="record"
+		name="tutorial_bag"
+		args="-a -x '/camera/(.*)' --duration=30 -O turtlebot_walker.bag"
+		if="$(arg record_bag)"
+	/>
+	<include
+		file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"
+	/>
+
+</launch>
