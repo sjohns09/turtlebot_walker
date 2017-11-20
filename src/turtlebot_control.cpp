@@ -1,5 +1,5 @@
 /** @file turtlebot_control.cpp
- * @brief TODO
+ * @brief A navigation controller for the turtlebot
  *
  * @author Samantha Johnson
  * @date November 21, 2017
@@ -44,9 +44,6 @@
 
 #include "../include/Walker.h"
 
-
-
-
 class SubAndPub {
  public:
   SubAndPub() {
@@ -80,8 +77,6 @@ class SubAndPub {
   ros::Subscriber sensor_sub;
 };
 
-
-
 int main(int argc, char **argv) {
 
   ros::init(argc, argv, "turtlebot_control");
@@ -89,7 +84,6 @@ int main(int argc, char **argv) {
   SubAndPub turtlebotWalker;
 
   ros::spin();
-
 
   return 0;
 }
