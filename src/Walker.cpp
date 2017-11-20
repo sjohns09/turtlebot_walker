@@ -22,14 +22,14 @@ geometry_msgs::Twist Walker::walk_commands(float angleMin, float angleMax, float
   bool straight = true;
 
   for (auto r : ranges) {
-    if (r < 1) {
+    if (r < 0.7) {
       moveMsg.linear.x = 0.0;
       moveMsg.linear.y = 0.0;
       moveMsg.linear.z = 0.0;
 
       moveMsg.angular.x = 0.0;
       moveMsg.angular.y = 0.0;
-      moveMsg.angular.z = 0.2;
+      moveMsg.angular.z = -0.2;
       straight = false;
       ROS_INFO("Rotating");
       break;
