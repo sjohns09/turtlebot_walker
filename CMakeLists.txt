@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(turtlebot_walker)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  sensor_msgs
+  genmsg
 )
 
 ## System dependencies are found with CMake's conventions
@@ -103,10 +105,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES turtlebot_walker
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES turtlebot_walker
+  CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs
+  DEPENDS system_lib
 )
 
 ###########
@@ -115,15 +117,19 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
-)
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(turtlebot_control src/turtlebot_control.cpp src/Walker.cpp)
+target_link_libraries(turtlebot_control turtlebot_walker ${catkin_LIBRARIES})
+add_dependencies(turtlebot_control turtlebot_walker_generate_messages_cpp)
+
+#add_executable(Walker src/Walker.cpp)
+#target_link_libraries(Walker include)
+# add_dependencies(Walker turtlebot_walker_generate_messages_cpp)
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/turtlebot_walker.cpp
-# )
+add_library(turtlebot_walker src/Walker.cpp)
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
