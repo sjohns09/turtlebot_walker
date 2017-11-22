@@ -32,7 +32,9 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @details TODO
+ * @details Initializes the node which subscribes to sensor data from the
+ * turtlebot and publishes linear and rotational velocity commands to
+ * the turtlebot.
  */
 
 #include <sstream>
@@ -41,8 +43,7 @@
 #include "std_msgs/String.h"
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
-
-#include "../include/Walker.h"
+#include "Walker.h"
 
 class SubAndPub {
  public:
@@ -54,20 +55,14 @@ class SubAndPub {
   }
 
   void sensorCallback(const sensor_msgs::LaserScan::ConstPtr& sensorMsg) {
-
     Walker turtleWalker;
-
-    float angle_min = sensorMsg->angle_min;
-    float angle_max = sensorMsg->angle_max;
-    float angle_inc = sensorMsg->angle_increment;
 
     std::vector<float> ranges = sensorMsg->ranges;
 
-    moveMsg = turtleWalker.walk_commands(angle_min, angle_max, angle_inc, ranges);
+    moveMsg = turtleWalker.walk_commands(ranges);
 
     control_pub.publish(moveMsg);
     ROS_INFO("Publishing Command");
-
   }
 
  private:
@@ -78,7 +73,6 @@ class SubAndPub {
 };
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "turtlebot_control");
 
   SubAndPub turtlebotWalker;

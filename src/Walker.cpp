@@ -1,4 +1,4 @@
-/** @file walker.cpp
+/** @file Walker.cpp
  * @brief A navigation controller algorithm for the turtlebot
  *
  * @author Samantha Johnson
@@ -32,7 +32,10 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @details TODO
+ * @details Algorithm for determining whether the turtlebot is in close proximity
+ * to an object. If the turtlebot is near an obstacle it instructs the turtlebot
+ * to rotate, in hopes that a clear path will be discovered which will allow the
+ * turtlebot to proceed moving forward.
  */
 
 #include <sstream>
@@ -41,13 +44,10 @@
 #include "std_msgs/String.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
-#include "../include/Walker.h"
+#include "Walker.h"
 
 
-geometry_msgs::Twist Walker::walk_commands(float angleMin, float angleMax, float inc,
-                           std::vector<float> ranges) {
-  // If any of the values in range are < 1.5 rotate until not and then continue
-
+geometry_msgs::Twist Walker::walk_commands(std::vector<float> ranges) {
   geometry_msgs::Twist moveMsg;
   bool straight = true;
 
@@ -65,7 +65,6 @@ geometry_msgs::Twist Walker::walk_commands(float angleMin, float angleMax, float
       break;
     }
   }
-
   if (straight == true) {
     moveMsg.linear.x = 0.2;
     moveMsg.linear.y = 0.0;
@@ -76,6 +75,5 @@ geometry_msgs::Twist Walker::walk_commands(float angleMin, float angleMax, float
     moveMsg.angular.z = 0.0;
     ROS_INFO("Straight");
   }
-
   return moveMsg;
 }
