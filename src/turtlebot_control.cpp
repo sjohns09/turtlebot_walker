@@ -44,33 +44,7 @@
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
 #include "Walker.h"
-
-class SubAndPub {
- public:
-  SubAndPub() {
-    control_pub = n.advertise<geometry_msgs::Twist>(
-        "cmd_vel_mux/input/teleop", 100);
-
-    sensor_sub = n.subscribe("scan", 10, &SubAndPub::sensorCallback, this);
-  }
-
-  void sensorCallback(const sensor_msgs::LaserScan::ConstPtr& sensorMsg) {
-    Walker turtleWalker;
-
-    std::vector<float> ranges = sensorMsg->ranges;
-
-    moveMsg = turtleWalker.walk_commands(ranges);
-
-    control_pub.publish(moveMsg);
-    ROS_INFO("Publishing Command");
-  }
-
- private:
-  ros::NodeHandle n;
-  geometry_msgs::Twist moveMsg;
-  ros::Publisher control_pub;
-  ros::Subscriber sensor_sub;
-};
+#include "SubAndPub.h"
 
 int main(int argc, char **argv) {
   ros::init(argc, argv, "turtlebot_control");

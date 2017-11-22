@@ -36,14 +36,15 @@ roslaunch turtlebot_walker turtlebot_walker.launch record_bag:=false
 
 To record a bag file set record\_bag = true when the launch file is ran. The bagfile will record for a maximum of 30 seconds.
 
-To examine the recorded bag file run the command shown below:
+To examine the recorded bag file and playback the bag file run the commands shown below:
 
 ```
 rosbag info ~/.ros/turtlebot_walker.bag
+rosbag play ~/.ros/turtlebot_walker.bag
 ```
-To play back the bag file and show it working with the listener node:
+To play back the bag file and show it working with Gazebo:
 
-  - Launch the turtlebot_gazebo worl sim
+  - Launch the turtlebot_gazebo world sim
  
  ```
  roslaunch turtlebot_gazebo turtlebot_world.launch

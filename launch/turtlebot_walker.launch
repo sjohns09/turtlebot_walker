@@ -5,6 +5,8 @@
 		pkg="turtlebot_walker" 
 		type="turtlebot_control" 
 		name="turtlebot_control"
+		output="screen"
+		launch-prefix="xterm -e"
 		required="true"
 	/>
 	<node

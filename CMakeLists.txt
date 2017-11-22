@@ -119,16 +119,12 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(turtlebot_control src/turtlebot_control.cpp src/Walker.cpp)
+add_executable(turtlebot_control src/turtlebot_control.cpp src/Walker.cpp src/SubAndPub.cpp)
 target_link_libraries(turtlebot_control turtlebot_walker ${catkin_LIBRARIES})
 add_dependencies(turtlebot_control turtlebot_walker_generate_messages_cpp)
 
-#add_executable(Walker src/Walker.cpp)
-#target_link_libraries(Walker include)
-# add_dependencies(Walker turtlebot_walker_generate_messages_cpp)
-
 ## Declare a C++ library
-add_library(turtlebot_walker src/Walker.cpp)
+add_library(turtlebot_walker src/Walker.cpp src/SubAndPub.cpp)
 
 
 ## Add cmake target dependencies of the library
