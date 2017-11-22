@@ -40,13 +40,14 @@
 
 #include <sstream>
 #include <string>
+#include <vector>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
 
-#ifndef TURTLEBOT_WALKER_SRC_WALKER_H_
-#define TURTLEBOT_WALKER_SRC_WALKER_H_
+#ifndef INCLUDE_WALKER_H_
+#define INCLUDE_WALKER_H_
 
 class Walker {
  public:
@@ -60,4 +61,4 @@ class Walker {
   geometry_msgs::Twist walk_commands(std::vector<float> ranges);
 };
 
-#endif /* TURTLEBOT_WALKER_SRC_WALKER_H_ */
+#endif /* INCLUDE_WALKER_H_ */

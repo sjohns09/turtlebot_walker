@@ -44,8 +44,8 @@
 #include "geometry_msgs/Twist.h"
 #include "Walker.h"
 
-#ifndef TURTLEBOT_WALKER_INCLUDE_SUBANDPUB_H_
-#define TURTLEBOT_WALKER_INCLUDE_SUBANDPUB_H_
+#ifndef INCLUDE_SUBANDPUB_H_
+#define INCLUDE_SUBANDPUB_H_
 
 class SubAndPub {
  public:
@@ -65,4 +65,4 @@ class SubAndPub {
   ros::Subscriber sensor_sub;
 };
 
-#endif /* TURTLEBOT_WALKER_INCLUDE_SUBANDPUB_H_ */
+#endif /* INCLUDE_SUBANDPUB_H_ */
