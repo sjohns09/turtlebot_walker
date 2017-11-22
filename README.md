@@ -1,13 +1,16 @@
 # turtlebot_walker
-A walker algorithm using the turtlebot and gazebo
+
+A walker algorithm utilizing the turtlebot and gazebo
 
 ## Overview 
 
+Demo of turtlebot navigating an unknown world, by implementing a Roomba-like algorithm. The robot moves forward until it encounters an obstacle, then stops before it collides, rotates until a clear path is found, and moves forward again.
 
 ## Dependencies
 
- - ROS Kinetic is installed on machine
- - "beginner_tutorials" is cloned in a configured catkin workspace
+ - ROS Kinetic is installed on machine, which will include a Gazebo install
+ - The Ros turtlebot package is installed on the machine
+ - "turtlebot_walker" is cloned in a configured catkin workspace
 
 ## Build
 
